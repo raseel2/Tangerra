@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!--
+    Dashboard Screen FXML
+    Based on Chapter 2: JavaFX UI with BorderPane layout
+    Main navigation hub for the application
+-->
+
+<BorderPane style="-fx-background-color: #FFF8F3;" stylesheets="@../resources/tangerra-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vehicle_rental_management_system_p.DashboardController">
+
+    <!-- Top Section: Welcome Bar - Tangerra Orange -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: #EA5B2B; -fx-padding: 15;">
+            <!-- Tangerra Logo -->
+            <Label style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;" text="tangerra" />
+
+            <Label fx:id="lblWelcome" style="-fx-text-fill: white;" text="Welcome, User!">
+                <font>
+                    <Font name="System Bold" size="16.0" />
+                </font>
+            </Label>
+
+            <!-- Spacer -->
+            <HBox HBox.hgrow="ALWAYS" />
+
+            <Label fx:id="lblUserType" style="-fx-text-fill: white;" text="Role: Admin">
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Label>
+
+            <Button fx:id="btnLogout" onAction="#handleLogout" style="-fx-background-color: #C74D23; -fx-text-fill: white;" text="Logout">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+        </HBox>
+    </top>
+
+    <!-- Left Section: Navigation Menu - Warm Gray -->
+    <left>
+        <VBox spacing="10.0" style="-fx-background-color: #F5F5F0; -fx-padding: 20;">
+            <padding>
+                <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+            </padding>
+
+            <Label style="-fx-text-fill: #EA5B2B; -fx-font-weight: bold;" text="MENU">
+                <font>
+                    <Font name="System Bold" size="14.0" />
+                </font>
+            </Label>
+
+            <!-- Vehicle Management Button -->
+            <Button fx:id="btnVehicles" onAction="#handleVehicles" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #EA5B2B; -fx-text-fill: white;" styleClass="menu-button" text="Manage Vehicles" textAlignment="CENTER">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+
+            <!-- Customer Management Button -->
+            <Button fx:id="btnCustomers" onAction="#handleCustomers" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #EA5B2B; -fx-text-fill: white;" styleClass="menu-button" text="Manage Customers" textAlignment="CENTER">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+
+            <!-- Rental Management Button -->
+            <Button fx:id="btnRentals" onAction="#handleRentals" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #EA5B2B; -fx-text-fill: white;" styleClass="menu-button" text="Manage Rentals" textAlignment="CENTER">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+
+            <!-- User Management Button (Admin only) -->
+            <Button fx:id="btnUsers" onAction="#handleUsers" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #C74D23; -fx-text-fill: white;" styleClass="menu-button" text="Manage Users" visible="false">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+
+            <!-- Spacer -->
+            <VBox VBox.vgrow="ALWAYS" />
+
+            <!-- Exit Button -->
+            <Button fx:id="btnExit" onAction="#handleExit" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Exit Application">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+        </VBox>
+    </left>
+
+    <!-- Center Section: Welcome Content -->
+    <center>
+        <VBox alignment="CENTER" spacing="20.0">
+            <padding>
+                <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+            </padding>
+
+            <Label style="-fx-text-fill: #2c3e50;" text="Vehicle Rental Management System">
+                <font>
+                    <Font name="System Bold" size="28.0" />
+                </font>
+            </Label>
+
+            <Label fx:id="lblSystemInfo" style="-fx-text-fill: #7f8c8d;" text="System Information">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Label>
+
+            <VBox alignment="CENTER" spacing="15.0" style="-fx-background-color: white; -fx-padding: 30; -fx-background-radius: 10;">
+                <Label style="-fx-text-fill: #34495e;" text="Quick Stats">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+
+                <HBox alignment="CENTER" spacing="40.0">
+                    <VBox alignment="CENTER" spacing="5.0">
+                        <Label fx:id="lblTotalVehicles" style="-fx-text-fill: #3498db;" text="0">
+                            <font>
+                                <Font name="System Bold" size="32.0" />
+                            </font>
+                        </Label>
+                        <Label style="-fx-text-fill: #7f8c8d;" text="Total Vehicles">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Label>
+                    </VBox>
+
+                    <VBox alignment="CENTER" spacing="5.0">
+                        <Label fx:id="lblAvailableVehicles" style="-fx-text-fill: #27ae60;" text="0">
+                            <font>
+                                <Font name="System Bold" size="32.0" />
+                            </font>
+                        </Label>
+                        <Label style="-fx-text-fill: #7f8c8d;" text="Available">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Label>
+                    </VBox>
+
+                    <VBox alignment="CENTER" spacing="5.0">
+                        <Label fx:id="lblActiveRentals" style="-fx-text-fill: #e67e22;" text="0">
+                            <font>
+                                <Font name="System Bold" size="32.0" />
+                            </font>
+                        </Label>
+                        <Label style="-fx-text-fill: #7f8c8d;" text="Active Rentals">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Label>
+                    </VBox>
+
+                    <VBox alignment="CENTER" spacing="5.0">
+                        <Label fx:id="lblTotalCustomers" style="-fx-text-fill: #9b59b6;" text="0">
+                            <font>
+                                <Font name="System Bold" size="32.0" />
+                            </font>
+                        </Label>
+                        <Label style="-fx-text-fill: #7f8c8d;" text="Total Customers">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Label>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <Label style="-fx-text-fill: #95a5a6;" text="Select an option from the menu to get started">
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Label>
+        </VBox>
+    </center>
+
+</BorderPane>

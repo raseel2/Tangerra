@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!--
+    Customer Booking Screen
+    Allows customers to browse vehicles and make bookings
+    Tangerra branded
+-->
+
+<BorderPane style="-fx-background-color: #FFF8F3;" stylesheets="@../resources/tangerra-style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vehicle_rental_management_system_p.CustomerBookingController">
+
+    <!-- Top: Tangerra Header -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: #EA5B2B; -fx-padding: 15;">
+            <Label style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;" text="Book a Vehicle" />
+            <HBox HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblCustomerName" style="-fx-text-fill: white; -fx-font-size: 14px;" text="Customer" />
+            <Button fx:id="btnBack" onAction="#handleBack" style="-fx-background-color: #C74D23; -fx-text-fill: white;" text="← Dashboard" />
+        </HBox>
+    </top>
+
+    <!-- Center: Vehicle Selection and Booking -->
+    <center>
+        <VBox spacing="20.0">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+
+            <!-- Search and Filter Section -->
+            <VBox spacing="10.0" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 8;">
+                <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #EA5B2B;" text="Filter Available Vehicles" />
+
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <VBox spacing="5">
+                        <Label text="Vehicle Type:" />
+                        <ComboBox fx:id="cbVehicleType" prefWidth="150" promptText="All Types" />
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="Max Price (SAR/day):" />
+                        <TextField fx:id="txtMaxPrice" prefWidth="120" />
+                    </VBox>
+
+                    <Button fx:id="btnFilter" onAction="#handleFilter" style="-fx-background-color: #EA5B2B; -fx-text-fill: white; -fx-padding: 8 20;" text="Filter" />
+
+                    <Button fx:id="btnClearFilter" onAction="#handleClearFilter" style="-fx-background-color: #F5F5F0; -fx-text-fill: #4A4A4A; -fx-border-color: #EA5B2B; -fx-border-width: 1.5;" text="Clear" />
+                </HBox>
+            </VBox>
+
+            <!-- Available Vehicles Table -->
+            <VBox spacing="10.0" VBox.vgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #4A4A4A;" text="Available Vehicles" />
+                    <HBox HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblVehicleCount" style="-fx-text-fill: #EA5B2B;" text="0 vehicles" />
+                </HBox>
+
+                <TableView fx:id="tableVehicles" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colVehicleId" prefWidth="80" text="ID" />
+                        <TableColumn fx:id="colType" prefWidth="100" text="Type" />
+                        <TableColumn fx:id="colBrand" prefWidth="120" text="Brand" />
+                        <TableColumn fx:id="colModel" prefWidth="150" text="Model" />
+                        <TableColumn fx:id="colYear" prefWidth="80" text="Year" />
+                        <TableColumn fx:id="colDailyRate" prefWidth="120" text="Daily Rate (SAR)" />
+                    </columns>
+                </TableView>
+            </VBox>
+
+        </VBox>
+    </center>
+
+    <!-- Right: Booking Form -->
+    <right>
+        <VBox prefWidth="350" spacing="15.0" style="-fx-background-color: white; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #EA5B2B;" text="Booking Details" />
+            <Separator />
+
+            <!-- Selected Vehicle Info -->
+            <VBox spacing="8">
+                <Label style="-fx-font-weight: bold;" text="Selected Vehicle:" />
+                <Label fx:id="lblSelectedVehicle" style="-fx-text-fill: #666;" text="Please select a vehicle from the table" wrapText="true" />
+                <Label fx:id="lblDailyRate" style="-fx-text-fill: #EA5B2B; -fx-font-weight: bold;" text="Daily Rate: -" />
+            </VBox>
+
+            <Separator />
+
+            <!-- Booking Dates -->
+            <GridPane hgap="10" vgap="12">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="NEVER" minWidth="100" />
+                    <ColumnConstraints hgrow="ALWAYS" minWidth="150" />
+                </columnConstraints>
+
+                <Label style="-fx-font-weight: bold;" text="Pickup Date:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <DatePicker fx:id="dpPickupDate" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label style="-fx-font-weight: bold;" text="Return Date:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <DatePicker fx:id="dpReturnDate" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+
+            <Separator />
+
+            <!-- Price Calculation -->
+            <VBox spacing="10" style="-fx-background-color: #FFF8F3; -fx-padding: 15; -fx-background-radius: 5;">
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-weight: bold;" text="Rental Days:" />
+                    <HBox HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblRentalDays" style="-fx-text-fill: #EA5B2B; -fx-font-weight: bold;" text="0 days" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-weight: bold;" text="Daily Rate:" />
+                    <HBox HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblRateDisplay" style="-fx-text-fill: #666;" text="0 SAR" />
+                </HBox>
+
+                <Separator />
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="TOTAL COST:" />
+                    <HBox HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblTotalCost" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #EA5B2B;" text="0 SAR" />
+                </HBox>
+            </VBox>
+
+            <Separator />
+
+            <!-- Booking Actions -->
+            <Button fx:id="btnBookNow" maxWidth="Infinity" onAction="#handleBookNow" style="-fx-background-color: #EA5B2B; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 12;" text="Confirm Booking">
+            <font>
+               <Font name="Arial Bold" size="13.0" />
+            </font></Button>
+
+            <Button fx:id="btnClearSelection" maxWidth="Infinity" onAction="#handleClearSelection" style="-fx-background-color: #F5F5F0; -fx-text-fill: #4A4A4A; -fx-border-color: #EA5B2B; -fx-border-width: 1.5;" text="Clear Selection" />
+
+            <!-- Messages -->
+            <Label fx:id="lblMessage" style="-fx-text-fill: green; -fx-font-weight: bold;" text="" wrapText="true" />
+            <Label fx:id="lblError" style="-fx-text-fill: red; -fx-font-weight: bold;" text="" wrapText="true" />
+        </VBox>
+    </right>
+
+</BorderPane>

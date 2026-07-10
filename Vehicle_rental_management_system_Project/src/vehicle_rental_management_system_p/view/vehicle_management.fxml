@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!--
+    Vehicle Management Screen FXML
+    Based on Chapter 2: JavaFX UI with BorderPane, GridPane, VBox
+    TableView for displaying vehicles, GridPane for form inputs
+-->
+
+<BorderPane style="-fx-background-color: #FFF8F3;" stylesheets="@../resources/tangerra-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vehicle_rental_management_system_p.VehicleManagementController">
+
+    <!-- Top Section: Title Bar - Tangerra Orange -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: #EA5B2B; -fx-padding: 15;">
+            <Label style="-fx-text-fill: white;" text="Vehicle Management">
+                <font>
+                    <Font name="System Bold" size="20.0" />
+                </font>
+            </Label>
+
+            <!-- Spacer -->
+            <HBox HBox.hgrow="ALWAYS" />
+
+            <Button fx:id="btnBack" onAction="#handleBack" style="-fx-background-color: #C74D23; -fx-text-fill: white;" text="← Back to Dashboard">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+        </HBox>
+    </top>
+
+    <!-- Left Section: Action Buttons -->
+    <left>
+        <VBox spacing="10.0" style="-fx-background-color: #F5F5F0; -fx-padding: 20;">
+            <padding>
+                <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+            </padding>
+
+            <Label style="-fx-text-fill: #EA5B2B;" text="ACTIONS">
+                <font>
+                    <Font name="System Bold" size="14.0" />
+                </font>
+            </Label>
+
+            <Button fx:id="btnAdd" onAction="#handleAdd" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #EA5B2B; -fx-text-fill: white;" text="Add Vehicle">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+
+            <Button fx:id="btnUpdate" disable="true" onAction="#handleUpdate" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #EA5B2B; -fx-text-fill: white;" text="Update Vehicle">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+
+            <Button fx:id="btnDelete" disable="true" onAction="#handleDelete" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #C74D23; -fx-text-fill: white;" text="Delete Vehicle">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+
+            <Label style="-fx-text-fill: #EA5B2B;" text="FILTERS">
+                <font>
+                    <Font name="System Bold" size="14.0" />
+                </font>
+                <VBox.margin>
+                    <Insets top="20.0" />
+                </VBox.margin>
+            </Label>
+
+            <ComboBox fx:id="cbFilterType" onAction="#handleFilter" prefWidth="150.0" promptText="Filter by Type" />
+
+            <ComboBox fx:id="cbFilterStatus" onAction="#handleFilter" prefWidth="150.0" promptText="Filter by Status" />
+
+            <TextField fx:id="txtSearch" prefWidth="150.0" promptText="Search..." />
+
+            <Button fx:id="btnSearch" onAction="#handleSearch" prefWidth="150.0" style="-fx-background-color: #16a085; -fx-text-fill: white;" text="Search">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+
+            <Button fx:id="btnClearFilter" onAction="#handleClearFilter" prefWidth="150.0" style="-fx-background-color: #C74D23; -fx-text-fill: white;" text="Clear Filters">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+
+            <Button fx:id="btnRefresh" onAction="#handleRefresh" prefWidth="150.0" style="-fx-background-color: #f39c12; -fx-text-fill: white;" text="Refresh">
+                <font>
+                    <Font size="13.0" />
+                </font>
+                <VBox.margin>
+                    <Insets top="10.0" />
+                </VBox.margin>
+            </Button>
+        </VBox>
+    </left>
+
+    <!-- Center Section: TableView -->
+    <center>
+        <VBox spacing="10.0">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+
+            <Label fx:id="lblTableTitle" style="-fx-text-fill: #F5F5F0;" text="All Vehicles">
+                <font>
+                    <Font name="System Bold" size="16.0" />
+                </font>
+            </Label>
+
+            <TableView fx:id="tableVehicles" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colVehicleId" prefWidth="70.0" text="ID" />
+                    <TableColumn fx:id="colType" prefWidth="100.0" text="Type" />
+                    <TableColumn fx:id="colBrand" prefWidth="120.0" text="Brand" />
+                    <TableColumn fx:id="colModel" prefWidth="120.0" text="Model" />
+                    <TableColumn fx:id="colYear" prefWidth="80.0" text="Year" />
+                    <TableColumn fx:id="colDailyRate" prefWidth="100.0" text="Daily Rate" />
+                    <TableColumn fx:id="colStatus" prefWidth="100.0" text="Status" />
+                </columns>
+            </TableView>
+
+            <Label fx:id="lblRecordCount" style="-fx-text-fill: #7f8c8d;" text="Total: 0 vehicles">
+                <font>
+                    <Font size="12.0" />
+                </font>
+            </Label>
+        </VBox>
+    </center>
+
+    <!-- Right Section: Form -->
+    <right>
+        <VBox spacing="15.0" style="-fx-background-color: white; -fx-padding: 20;">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+
+            <Label fx:id="lblFormTitle" style="-fx-text-fill: #F5F5F0;" text="Vehicle Details">
+                <font>
+                    <Font name="System Bold" size="16.0" />
+                </font>
+            </Label>
+
+            <GridPane hgap="10.0" vgap="15.0">
+                <!-- Vehicle ID -->
+                <Label text="Vehicle ID:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="txtVehicleId" editable="false" prefWidth="180.0" promptText="Auto-generated" style="-fx-background-color: #FFF8F3;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <!-- Vehicle Type -->
+                <Label text="Type:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="cbVehicleType" prefWidth="180.0" promptText="Select Type" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <!-- Brand -->
+                <Label text="Brand:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="txtBrand" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                <!-- Model -->
+                <Label text="Model:" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="txtModel" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                <!-- Year -->
+                <Label text="Year:" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="txtYear" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                <!-- Daily Rate -->
+                <Label text="Daily Rate:" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="txtDailyRate" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                <!-- Availability -->
+                <Label text="Available:" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="cbAvailability" prefWidth="180.0" promptText="Select Status" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+
+            <!-- Form Buttons -->
+            <HBox alignment="CENTER" spacing="10.0">
+                <VBox.margin>
+                    <Insets top="10.0" />
+                </VBox.margin>
+
+                <Button fx:id="btnSave" onAction="#handleSave" prefWidth="85.0" style="-fx-background-color: #EA5B2B; -fx-text-fill: white;" text="Save">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Button>
+
+                <Button fx:id="btnCancel" onAction="#handleCancel" prefWidth="85.0" style="-fx-background-color: #C74D23; -fx-text-fill: white;" text="Cancel">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Button>
+            </HBox>
+
+            <!-- Status Message -->
+            <Label fx:id="lblStatus" style="-fx-text-fill: green;" text="" wrapText="true">
+                <font>
+                    <Font size="12.0" />
+                </font>
+            </Label>
+        </VBox>
+    </right>
+
+</BorderPane>

@@ -1,0 +1,306 @@
+
+
+/* Root Variables - Tangerra Color Palette */
+.root {
+    /* Primary Tangerra Orange */
+    -fx-tangerra-orange: #EA5B2B;
+    -fx-tangerra-orange-dark: #C74D23;
+    -fx-tangerra-orange-light: #FF7445;
+    -fx-tangerra-orange-lighter: #FFB199;
+
+    /* Complementary Colors */
+    -fx-warm-gray: #F5F5F0;
+    -fx-medium-gray: #CCCCCC;
+    -fx-dark-gray: #4A4A4A;
+    -fx-very-dark: #2C2C2C;
+
+    /* Accent Colors */
+    -fx-cream: #FFF8F3;
+    -fx-white: #FFFFFF;
+
+    /* Status Colors */
+    -fx-success: #27AE60;
+    -fx-warning: #F39C12;
+    -fx-danger: #E74C3C;
+    -fx-info: #3498DB;
+}
+
+/* Main Background */
+.root {
+    -fx-background-color: -fx-cream;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Title Bars - Tangerra Orange */
+.title-bar {
+    -fx-background-color: -fx-tangerra-orange;
+    -fx-padding: 15;
+}
+
+.title-label {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+/* Buttons - Tangerra Styled */
+.button {
+    -fx-background-color: -fx-tangerra-orange;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+    -fx-background-radius: 4;
+}
+
+.button:hover {
+    -fx-background-color: -fx-tangerra-orange-dark;
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.button:pressed {
+    -fx-background-color: -fx-tangerra-orange-dark;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* Primary Action Button */
+.button-primary {
+    -fx-background-color: -fx-tangerra-orange;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+}
+
+.button-primary:hover {
+    -fx-background-color: -fx-tangerra-orange-light;
+}
+
+/* Secondary Button */
+.button-secondary {
+    -fx-background-color: -fx-warm-gray;
+    -fx-text-fill: -fx-dark-gray;
+    -fx-border-color: -fx-tangerra-orange;
+    -fx-border-width: 1.5;
+}
+
+.button-secondary:hover {
+    -fx-background-color: -fx-tangerra-orange-lighter;
+}
+
+/* Success Button */
+.button-success {
+    -fx-background-color: -fx-success;
+}
+
+.button-success:hover {
+    -fx-background-color: derive(-fx-success, -10%);
+}
+
+/* Danger Button */
+.button-danger {
+    -fx-background-color: -fx-danger;
+}
+
+.button-danger:hover {
+    -fx-background-color: derive(-fx-danger, -10%);
+}
+
+/* Text Fields */
+.text-field, .text-area, .password-field {
+    -fx-background-color: white;
+    -fx-border-color: -fx-medium-gray;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 8;
+}
+
+.text-field:focused, .text-area:focused, .password-field:focused {
+    -fx-border-color: -fx-tangerra-orange;
+    -fx-border-width: 2;
+}
+
+/* ComboBox */
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: -fx-medium-gray;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.combo-box:focused {
+    -fx-border-color: -fx-tangerra-orange;
+    -fx-border-width: 2;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: -fx-tangerra-orange-lighter;
+}
+
+/* TableView */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: -fx-medium-gray;
+    -fx-border-width: 1;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -fx-tangerra-orange;
+}
+
+.table-view .column-header {
+    -fx-background-color: -fx-tangerra-orange;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10;
+}
+
+.table-view .table-cell {
+    -fx-padding: 8;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: -fx-tangerra-orange-lighter;
+    -fx-text-fill: -fx-very-dark;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: -fx-warm-gray;
+}
+
+/* Labels */
+.label {
+    -fx-text-fill: -fx-dark-gray;
+}
+
+.label-header {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-tangerra-orange;
+}
+
+/* Side Panels */
+.side-panel {
+    -fx-background-color: -fx-warm-gray;
+    -fx-padding: 20;
+}
+
+/* Separators */
+.separator {
+    -fx-background-color: -fx-tangerra-orange-lighter;
+}
+
+/* Login Screen Specific */
+.login-container {
+    -fx-background-color: -fx-cream;
+}
+
+.login-panel {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(234, 91, 43, 0.3), 20, 0, 0, 0);
+    -fx-background-radius: 8;
+    -fx-padding: 40;
+}
+
+.login-title {
+    -fx-text-fill: -fx-tangerra-orange;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+}
+
+/* Dashboard Cards */
+.dashboard-card {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
+    -fx-padding: 20;
+}
+
+.dashboard-stat-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: -fx-dark-gray;
+}
+
+.dashboard-stat-value {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-tangerra-orange;
+}
+
+/* Menu Buttons */
+.menu-button {
+    -fx-background-color: white;
+    -fx-text-fill: -fx-dark-gray;
+    -fx-border-color: -fx-medium-gray;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 12 20;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.menu-button:hover {
+    -fx-background-color: -fx-tangerra-orange;
+    -fx-text-fill: white;
+    -fx-border-color: -fx-tangerra-orange;
+}
+
+/* Error/Success Messages */
+.message-error {
+    -fx-text-fill: -fx-danger;
+    -fx-font-weight: bold;
+}
+
+.message-success {
+    -fx-text-fill: -fx-success;
+    -fx-font-weight: bold;
+}
+
+.message-warning {
+    -fx-text-fill: -fx-warning;
+    -fx-font-weight: bold;
+}
+
+.message-info {
+    -fx-text-fill: -fx-info;
+    -fx-font-weight: bold;
+}
+
+/* DatePicker */
+.date-picker {
+    -fx-background-color: white;
+    -fx-border-color: -fx-medium-gray;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 4;
+}
+
+.date-picker:focused {
+    -fx-border-color: -fx-tangerra-orange;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: -fx-tangerra-orange-lighter;
+}
+
+/* ScrollBar */
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: -fx-tangerra-orange-lighter;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar:horizontal .thumb:hover,
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: -fx-tangerra-orange;
+}
+
+/* Tooltips */
+.tooltip {
+    -fx-background-color: -fx-tangerra-orange;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-background-radius: 4;
+}
